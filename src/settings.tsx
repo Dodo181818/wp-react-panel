@@ -4,7 +4,7 @@ declare global {
     interface Window {
         reactData: {
             nonce: string;
-            restUrl: string;
+            settingsApiUrl: string;
             logoUrl: string;
             options: Record<string, any>;
             settings: any;
@@ -455,7 +455,7 @@ export default function pluginData() {
     if (window.reactData) {
         return {
             nonce: window.reactData.nonce,
-            restUrl: window.reactData.restUrl,
+            settingsApiUrl: window.reactData.settingsApiUrl,
             logoUrl: window.reactData.logoUrl && Object.keys(window.reactData.settings).length > 0
                 ? window.reactData.logoUrl
                 : logoURL,
@@ -468,7 +468,7 @@ export default function pluginData() {
 
     return {
         nonce: '',
-        restUrl: '',
+        settingsApiUrl: '',
         logoUrl: logoURL,
         options: {},
         settings: defaultSettings,

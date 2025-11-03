@@ -67,7 +67,7 @@ export default function App() {
         const allSettings = formDataToJSON(formData);
 
         try {
-            const response = await fetch(`${pluginSettings.restUrl}my-react-settings/v1/update-settings`, {
+            const response = await fetch(`${pluginSettings.settingsApiUrl}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
