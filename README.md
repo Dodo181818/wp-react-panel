@@ -1,10 +1,10 @@
-# Admin Settings Pages
+# ReactPanel — WP React Admin Settings Builder
 
-Create a beautiful WordPress plugin settings page with React, Shadcn UI, and TypeScript, easily and quickly.
+Create a beautiful WordPress plugin settings page with React, ShadCDN UI, and TypeScript, easily and quickly.
 
 ## Quick Start
 
-### 1. Include the AdminSettings Class
+### 1. Include the ReactPanel Class
 
 ```php
 require_once PLUGIN_DIR . 'admin-settings/admin-settings.php';
@@ -50,10 +50,10 @@ $settings_data = array(
 );
 ```
 
-### 4. Initialize AdminSettings
+### 4. Initialize ReactPanel
 
 ```php
-$admin_settings = new AdminSettings( $page_data, $settings_data, PLUGIN_URL, PLUGIN_VERSION );
+$admin_settings = new ReactPanel( $page_data, $settings_data, PLUGIN_URL, PLUGIN_VERSION );
 ```
 
 ## Supported Field Types
@@ -468,7 +468,7 @@ $settings_data = array(
 );
 
 // Initialize the settings page
-$admin_settings = new AdminSettings( $page_data, $settings_data, PLUGIN_URL, PLUGIN_VERSION );
+$admin_settings = new ReactPanel( $page_data, $settings_data, PLUGIN_URL, PLUGIN_VERSION );
 ```
 
 ---

@@ -1,11 +1,11 @@
 <?php
 /**
- * Admin Settings Class
+ * ReactPanel Main Class
  */
 
 defined( 'ABSPATH' ) || exit;
 
-final class AdminSettings {
+final class ReactPanel {
 
 	private $page_data;
 
@@ -17,6 +17,8 @@ final class AdminSettings {
 
 	private $plugin_version;
 
+	private $version = '1.0.0';
+
 	public function __construct( $page_data = [], $settings_data = [], $plugin_url = '', $plugin_version = '' ) {
 
 		$this->page_data      = $page_data;
@@ -24,6 +26,11 @@ final class AdminSettings {
 		$this->page_slug      = $page_data['menu_slug'] ?? '';
 		$this->plugin_url     = $plugin_url;
 		$this->plugin_version = $plugin_version;
+
+		if ( ! isset( $this->page_data['logo_url'] ) || empty( $this->page_data['logo_url'] ) ) {
+			$this->page_data['logo_url'] = $this->plugin_url . 'admin-settings/app/assets/logo.svg';
+			$this->plugin_version        = $this->version;
+		}
 
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_scripts' ] );

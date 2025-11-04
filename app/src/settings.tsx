@@ -5,6 +5,7 @@ declare global {
         reactData: {
             nonce: string;
             settingsApiUrl: string;
+            pluginVersion: string;
             logo_url: string;
             options: Record<string, any>;
             settings: any;
@@ -456,6 +457,7 @@ export default function settingsData() {
         return {
             nonce: window.reactData.nonce,
             settingsApiUrl: window.reactData.settingsApiUrl,
+            pluginVersion: window.reactData.pluginVersion,
             logoUrl: window.reactData.logo_url && Object.keys(window.reactData.logo_url).length > 0
                 ? window.reactData.logo_url
                 : logoURL,
@@ -469,6 +471,7 @@ export default function settingsData() {
     return {
         nonce: '',
         settingsApiUrl: '',
+        pluginVersion: '',
         logoUrl: logoURL,
         options: {},
         settings: defaultSettings,
