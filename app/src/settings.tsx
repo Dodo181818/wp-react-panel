@@ -5,14 +5,14 @@ declare global {
         reactData: {
             nonce: string;
             settingsApiUrl: string;
-            logoUrl: string;
+            logo_url: string;
             options: Record<string, any>;
             settings: any;
         };
     }
 }
 
-export default function pluginData() {
+export default function settingsData() {
     const defaultSettings = {
         general: {
             name: "General Settings",
@@ -456,8 +456,8 @@ export default function pluginData() {
         return {
             nonce: window.reactData.nonce,
             settingsApiUrl: window.reactData.settingsApiUrl,
-            logoUrl: window.reactData.logoUrl && Object.keys(window.reactData.settings).length > 0
-                ? window.reactData.logoUrl
+            logoUrl: window.reactData.logo_url && Object.keys(window.reactData.logo_url).length > 0
+                ? window.reactData.logo_url
                 : logoURL,
             options: window.reactData.options,
             settings: window.reactData.settings && Object.keys(window.reactData.settings).length > 0

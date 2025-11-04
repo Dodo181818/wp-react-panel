@@ -22,12 +22,14 @@ const FieldTags = (field: { data: any; }) => {
     const [selected, setSelected] = useState<string[]>(defaultArgs);
     const [newTag, setNewTag] = useState<string>('');
     const [tags, setTags] = useState<{ id: string; label: string }[]>(defaultTags);
+
     const handleRemove = (value: string) => {
         if (!selected.includes(value)) {
             return;
         }
         setSelected((prev) => prev.filter((v) => v !== value));
     };
+
     const handleSelect = (value: string) => {
         if (selected.includes(value)) {
             handleRemove(value);
@@ -35,6 +37,7 @@ const FieldTags = (field: { data: any; }) => {
         }
         setSelected((prev) => [...prev, value]);
     };
+
     const handleCreateTag = () => {
         setTags((prev) => [
             ...prev,
@@ -85,11 +88,13 @@ const FieldTags = (field: { data: any; }) => {
                     </TagsList>
                 </TagsContent>
             </Tags>
-            {
+            {selected.length > 0 ? (
                 selected.map((tag) => (
                     <input key={tag} type="hidden" name={`${data.id}[]`} value={tag}/>
                 ))
-            }
+            ) : (
+                <input type="hidden" name={`${data.id}[]`} value=""/>
+            )}
         </>
     );
 };

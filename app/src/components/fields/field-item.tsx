@@ -7,6 +7,7 @@ import FieldTags from "@/components/fields/field-tags.tsx";
 import {FieldRadio} from "@/components/fields/field-radio.tsx";
 import {FieldCheckbox} from "@/components/fields/field-checkbox.tsx";
 import {FieldDatetime} from "@/components/fields/field-datetime.tsx";
+import {useState} from "react";
 
 
 const handleOtherFields = (field: { type?: any }) => {
@@ -43,6 +44,7 @@ const handleOtherFields = (field: { type?: any }) => {
 export function FieldItem(props: { fieldData?: any }) {
 
     let data = props.fieldData;
+    const [inputValue, setInputValue] = useState(data.value || '');
 
     return (
         <div className="flex justify-between w-full gap-[50px] mb-6">
@@ -59,6 +61,8 @@ export function FieldItem(props: { fieldData?: any }) {
                                 type={data.type}
                                 id={data.id}
                                 name={data.id}
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
                                 placeholder={data.placeholder}
                             />
                         )

@@ -3,9 +3,9 @@ import {Button} from '@/components/ui/button';
 import {useToast} from '@/hooks/use-toast';
 import {Toaster} from '@/components/ui/toaster';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
-import pluginData from "@/settings";
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card.tsx";
-import {FieldItem} from "@/components/fields/field-item.tsx";
+import settingsData from "@/settings";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {FieldItem} from "@/components/fields/field-item";
 
 type Field = {
     id: string;
@@ -37,9 +37,9 @@ type Settings = Record<string, SettingTab>;
 export default function App() {
     const {toast} = useToast();
 
-    const pluginSettings = useMemo(() => pluginData(), []);
+    const pageSettingsData = useMemo(() => settingsData(), []);
 
-    const allSetting = pluginSettings.settings ?? [];
+    const allSetting = pageSettingsData.settings ?? [];
 
     const [loading, setLoading] = useState(false);
 
@@ -63,18 +63,19 @@ export default function App() {
         setLoading(true);
 
         const formData = new FormData(e.currentTarget);
-        // const allSettings = Object.fromEntries(formData.entries());
         const allSettings = formDataToJSON(formData);
 
         try {
-            const response = await fetch(`${pluginSettings.settingsApiUrl}`, {
+            const response = await fetch(`${pageSettingsData.settingsApiUrl}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-WP-Nonce': pluginSettings.nonce
+                    'X-WP-Nonce': pageSettingsData.nonce
                 },
                 body: JSON.stringify(allSettings)
             });
+
+            console.log(response);
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -104,7 +105,7 @@ export default function App() {
             <div className="max-w-4xl mx-auto">
                 <div className="header flex items-center justify-between mb-6">
                     <div className="logo flex items-center justify-between">
-                        <img className="w-[200px]" src={pluginSettings.logoUrl} alt="Plugin Logo"/>
+                        <img className="w-[200px]" src={pageSettingsData.logoUrl} alt="Plugin Logo"/>
                         <span className="text-[12px]">v3.0.0</span>
                     </div>
                     <div className="submit-button flex items-center justify-between">
